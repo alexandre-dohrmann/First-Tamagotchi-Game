@@ -60,7 +60,7 @@ $('body').on('click', '#startButton', function(){
 	$('#startButton').remove();
 	$('form').empty();
 	$('.catStill').attr('src', 'images/cat2.gif');
-	$('.liveStats').css("background-image", "url(images/life.gif)");
+	$('.liveStats').css("background-image", "url(images/life2.gif)");
 			setTimeout( 
 			function moveRight() {
 				$(".catStill").css({
@@ -115,6 +115,7 @@ $('body').on('click', '#startButton', function(){
 				alert(`${pet.name} bit the bullet.`)
 			$(".catStill").stop();
 			clearInterval(timePasses);
+			$('.changeStatDivs').empty();
 			const $restartButton = $('<button class="refresh" value="Refresh Page" onClick="window.location.reload()">Start Over</button>');
 			$('form	').text(`Sorry, ${pet.name} has died. Let's Play Again!`).append($('<br>')).append($restartButton);
 		}
@@ -140,7 +141,7 @@ $('form').on('submit', (e) => {
 });
 
 $('.feed').on('click', () => {
-	if (pet.hunger <= 1) {
+	if (pet.hunger <= 1 || pet.sleepiness <= 1) {
 		alert(`${pet.name} is gonna hurl!`);
 		return
 	}
@@ -150,12 +151,10 @@ $('.feed').on('click', () => {
 });
 
 $('.sleep').on('click', () => {
-	if (pet.sleepiness <= 1) {
+	if (pet.sleepiness <= 1 || pet.hunger <= 1) {
 		alert(`${pet.name} is bright-eyed and bushy-tailed!`);
 		return
 	}
-
-		$('section').css("background-image", "url(images/sleep.png)");
 		pet.sleepiness-= 1;
 		pet.hunger+= 1;
 		updateTamagotchi();
@@ -163,7 +162,7 @@ $('.sleep').on('click', () => {
 });
 
 $('.pet').on('click', () => {
-	if (pet.love <= 1) {
+	if (pet.love <= 1 || pet.sleepiness <= 1 || pet.hunger <= 1) {
 		alert(`${pet.name}'s heart is filled with love!`);
 		return
 	}
@@ -175,7 +174,7 @@ $('.pet').on('click', () => {
 });
 
 $('.play').on('click', () => {
-	if (pet.boredom <= 1) {
+	if (pet.boredom <= 1 || pet.hunger <= 1 || pet.love <= 1) {
 		alert(`${pet.name} is all worn out!`);
 		return
 	}
