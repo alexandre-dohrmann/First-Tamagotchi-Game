@@ -60,7 +60,7 @@ $('body').on('click', '#startButton', function(){
 	$('#startButton').remove();
 	$('form').empty();
 	$('.catStill').attr('src', 'images/cat2.gif');
-
+	$('.liveStats').css("background-image", "url(images/life.gif)");
 			setTimeout( 
 			function moveRight() {
 				$(".catStill").css({
@@ -154,6 +154,8 @@ $('.sleep').on('click', () => {
 		alert(`${pet.name} is bright-eyed and bushy-tailed!`);
 		return
 	}
+
+		$('section').css("background-image", "url(images/sleep.png)");
 		pet.sleepiness-= 1;
 		pet.hunger+= 1;
 		updateTamagotchi();
